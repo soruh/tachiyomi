@@ -4,6 +4,7 @@ class LibraryManga : MangaImpl() {
 
     var unreadCount: Int = 0
     var readCount: Int = 0
+    var latestChapterRead: Boolean = false
 
     val totalChapters
         get() = readCount + unreadCount

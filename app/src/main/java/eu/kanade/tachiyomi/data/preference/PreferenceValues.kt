@@ -8,6 +8,7 @@ const val DEVICE_CHARGING = "ac"
 const val MANGA_NON_COMPLETED = "manga_ongoing"
 const val MANGA_HAS_UNREAD = "manga_fully_read"
 const val MANGA_NON_READ = "manga_started"
+const val MANGA_LATEST_UNREAD = "manga_latest_read"
 
 /**
  * This class stores the values for the preferences in the application.

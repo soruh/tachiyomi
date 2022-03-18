@@ -19,6 +19,7 @@ class LibraryMangaGetResolver : DefaultGetResolver<LibraryManga>(), BaseMangaGet
         manga.unreadCount = cursor.getInt(cursor.getColumnIndexOrThrow(MangaTable.COMPUTED_COL_UNREAD_COUNT))
         manga.category = cursor.getInt(cursor.getColumnIndexOrThrow(MangaTable.COL_CATEGORY))
         manga.readCount = cursor.getInt(cursor.getColumnIndexOrThrow(MangaTable.COMPUTED_COL_READ_COUNT))
+        manga.latestChapterRead = cursor.getInt(cursor.getColumnIndexOrThrow(MangaTable.COMPUTED_COL_LATEST_READ)) != 0
 
         return manga
     }

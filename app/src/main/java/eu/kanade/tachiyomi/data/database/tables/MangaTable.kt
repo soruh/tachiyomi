@@ -46,6 +46,8 @@ object MangaTable {
     // Not an actual value but computed when created
     const val COMPUTED_COL_UNREAD_COUNT = "unread_count"
 
+    const val COMPUTED_COL_LATEST_READ = "latest_read"
+
     const val COMPUTED_COL_READ_COUNT = "read_count"
 
     val createTableQuery: String

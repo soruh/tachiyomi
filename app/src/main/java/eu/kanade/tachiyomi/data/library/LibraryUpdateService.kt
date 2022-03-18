@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.MANGA_HAS_UNREAD
+import eu.kanade.tachiyomi.data.preference.MANGA_LATEST_UNREAD
 import eu.kanade.tachiyomi.data.preference.MANGA_NON_COMPLETED
 import eu.kanade.tachiyomi.data.preference.MANGA_NON_READ
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -319,6 +320,9 @@ class LibraryUpdateService(
                                             }
                                             MANGA_HAS_UNREAD in restrictions && manga.unreadCount != 0 -> {
                                                 skippedUpdates.add(manga to getString(R.string.skipped_reason_not_caught_up))
+                                            }
+                                            MANGA_LATEST_UNREAD in restrictions && !manga.latestChapterRead -> {
+                                                skippedUpdates.add(manga to getString(R.string.skipped_reason_not_latest_unread))
                                             }
                                             MANGA_NON_READ in restrictions && manga.totalChapters > 0 && !manga.hasStarted -> {
                                                 skippedUpdates.add(manga to getString(R.string.skipped_reason_not_started))

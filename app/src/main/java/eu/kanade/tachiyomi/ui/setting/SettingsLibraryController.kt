@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.DEVICE_CHARGING
 import eu.kanade.tachiyomi.data.preference.DEVICE_ONLY_ON_WIFI
 import eu.kanade.tachiyomi.data.preference.MANGA_HAS_UNREAD
+import eu.kanade.tachiyomi.data.preference.MANGA_LATEST_UNREAD
 import eu.kanade.tachiyomi.data.preference.MANGA_NON_COMPLETED
 import eu.kanade.tachiyomi.data.preference.MANGA_NON_READ
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -196,8 +197,8 @@ class SettingsLibraryController : SettingsController() {
             multiSelectListPreference {
                 bindTo(preferences.libraryUpdateMangaRestriction())
                 titleRes = R.string.pref_library_update_manga_restriction
-                entriesRes = arrayOf(R.string.pref_update_only_completely_read, R.string.pref_update_only_started, R.string.pref_update_only_non_completed)
-                entryValues = arrayOf(MANGA_HAS_UNREAD, MANGA_NON_READ, MANGA_NON_COMPLETED)
+                entriesRes = arrayOf(R.string.pref_update_only_completely_read, R.string.pref_update_only_started, R.string.pref_update_only_non_completed, R.string.pref_update_only_when_latest_read)
+                entryValues = arrayOf(MANGA_HAS_UNREAD, MANGA_NON_READ, MANGA_NON_COMPLETED, MANGA_LATEST_UNREAD)
 
                 fun updateSummary() {
                     val restrictions = preferences.libraryUpdateMangaRestriction().get().sorted()
@@ -206,6 +207,7 @@ class SettingsLibraryController : SettingsController() {
                                 MANGA_NON_READ -> context.getString(R.string.pref_update_only_started)
                                 MANGA_HAS_UNREAD -> context.getString(R.string.pref_update_only_completely_read)
                                 MANGA_NON_COMPLETED -> context.getString(R.string.pref_update_only_non_completed)
+                                MANGA_LATEST_UNREAD -> context.getString(R.string.pref_update_only_when_latest_read)
                                 else -> it
                             }
                         }

@@ -224,7 +224,7 @@ class PreferencesHelper(val context: Context) {
     fun libraryUpdateInterval() = flowPrefs.getInt("pref_library_update_interval_key", 24)
 
     fun libraryUpdateDeviceRestriction() = flowPrefs.getStringSet("library_update_restriction", setOf(DEVICE_ONLY_ON_WIFI))
-    fun libraryUpdateMangaRestriction() = flowPrefs.getStringSet("library_update_manga_restriction", setOf(MANGA_HAS_UNREAD, MANGA_NON_COMPLETED, MANGA_NON_READ))
+    fun libraryUpdateMangaRestriction() = flowPrefs.getStringSet("library_update_manga_restriction", setOf(MANGA_HAS_UNREAD, MANGA_NON_COMPLETED, MANGA_NON_READ, MANGA_LATEST_UNREAD))
 
     fun showUpdatesNavBadge() = flowPrefs.getBoolean("library_update_show_tab_badge", false)
     fun unreadUpdatesCount() = flowPrefs.getInt("library_unread_updates_count", 0)

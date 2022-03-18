@@ -14,7 +14,7 @@ val libraryQuery =
     """
     SELECT M.*, COALESCE(MC.${MangaCategory.COL_CATEGORY_ID}, 0) AS ${Manga.COL_CATEGORY}
     FROM (
-        SELECT ${Manga.TABLE}.*, COALESCE(C.unreadCount, 0) AS ${Manga.COMPUTED_COL_UNREAD_COUNT}, COALESCE(R.readCount, 0) AS ${Manga.COMPUTED_COL_READ_COUNT}
+        SELECT ${Manga.TABLE}.*, COALESCE(C.unreadCount, 0) AS ${Manga.COMPUTED_COL_UNREAD_COUNT}, COALESCE(R.readCount, 0) AS ${Manga.COMPUTED_COL_READ_COUNT}, COALESCE(L.isRead, 0) AS ${Manga.COMPUTED_COL_LATEST_READ}
         FROM ${Manga.TABLE}
         LEFT JOIN (
             SELECT ${Chapter.COL_MANGA_ID}, COUNT(*) AS unreadCount
@@ -30,6 +30,13 @@ val libraryQuery =
             GROUP BY ${Chapter.COL_MANGA_ID}
         ) AS R
         ON ${Manga.COL_ID} = R.${Chapter.COL_MANGA_ID}
+        LEFT JOIN (
+            SELECT ${Chapter.COL_MANGA_ID}, ${Chapter.COL_READ} AS isRead
+            FROM ${Chapter.TABLE}
+            ORDER BY ${Chapter.COL_CHAPTER_NUMBER} DESC
+            LIMIT 1
+        ) AS L
+        ON ${Manga.COL_ID} = L.${Chapter.COL_MANGA_ID}
         WHERE ${Manga.COL_FAVORITE} = 1
         GROUP BY ${Manga.COL_ID}
         ORDER BY ${Manga.COL_TITLE}
